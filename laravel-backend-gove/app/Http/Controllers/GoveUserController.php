@@ -38,7 +38,7 @@ class GoveUserController extends Controller
 
 
         GoveUser::create($incomingFields);
-        return redirect("/usuarios");
+        return response()->json(['message' => 'Criado com sucesso!'], 201);
     }
 
     public function editUser(Request $request, GoveUser $usuario)
@@ -57,12 +57,12 @@ class GoveUserController extends Controller
         $incomingFields['permissionTwo'] = filter_var($incomingFields['permissionTwo'], FILTER_VALIDATE_BOOLEAN);
 
         $usuario->update($incomingFields);
-        return redirect("/usuarios");
+        return response()->json(['message' => 'Atualizado com sucesso!'], 200);
     }
 
     public function deleteUser(GoveUser $usuario)
     {
         $usuario->delete();
-        return redirect("/usuarios");
+        return response()->json(['message' => 'Deletado com sucesso!'], 200);
     }
 }

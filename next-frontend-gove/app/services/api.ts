@@ -33,28 +33,16 @@ export async function createUser(user: User) {
 }
 
 export async function editUser(user: User) {
-  const headers = {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  };
-
-  console.log(user);
-  console.log(`/editar-usuario/${user.id}`);
-
   try {
-    const response = await axios.put(
-      `/editar-usuario/${user.id}`,
-      {
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
-        userType: user.userType,
-        secretary: user.secretary,
-        permissionOne: user.permissionOne,
-        permissionTwo: user.permissionTwo,
-      },
-      { headers }
-    );
+    const response = await axios.put(`/editar-usuario/${user.id}`, {
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      userType: user.userType,
+      secretary: user.secretary,
+      permissionOne: user.permissionOne,
+      permissionTwo: user.permissionTwo,
+    });
     return response;
   } catch (error) {
     console.error("Error details:", error);

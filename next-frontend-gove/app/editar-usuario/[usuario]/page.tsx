@@ -7,7 +7,7 @@ import {
   FormGroup,
   Button,
 } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useParams, useRouter } from "next/navigation";
 import * as yup from "yup";
@@ -56,6 +56,7 @@ export default function Page() {
     handleSubmit,
     formState: { errors },
     reset,
+    control,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -141,23 +142,35 @@ export default function Page() {
         </div>
         <h2 className="font-bold my-4">Permissões de acesso</h2>
         <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox
-                {...register("permissionOne")}
-                defaultChecked={Boolean(user?.permissionOne)}
+          <Controller
+            name="permissionOne"
+            control={control}
+            render={({ field }) => (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={field.value}
+                    onChange={(e) => field.onChange(e.target.checked)}
+                  />
+                }
+                label="Permissão Filha 1"
               />
-            }
-            label="Permissão Filha 1"
+            )}
           />
-          <FormControlLabel
-            control={
-              <Checkbox
-                {...register("permissionTwo")}
-                defaultChecked={Boolean(user?.permissionTwo)}
+          <Controller
+            name="permissionTwo"
+            control={control}
+            render={({ field }) => (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={field.value}
+                    onChange={(e) => field.onChange(e.target.checked)}
+                  />
+                }
+                label="Permissão Filha 2"
               />
-            }
-            label="Permissão Filha 2"
+            )}
           />
         </FormGroup>
         <div className="flex flex-row justify-end space-x-4 my-2">
