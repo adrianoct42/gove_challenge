@@ -131,7 +131,7 @@ export default function Page() {
 
   return (
     <>
-      <div className=" border-1 bg-white flex flex-row justify-between w-[85%] mx-auto px-9 py-9">
+      <div className="border-1 shadow-2xl bg-white flex flex-row justify-between w-[85%] mx-auto px-9 py-9">
         <h1 className="font-bold text-2xl text-fuchsia-900">Usuários</h1>
         <Button
           variant="contained"
@@ -149,7 +149,7 @@ export default function Page() {
             rows={rows}
             columns={columns}
             initialState={{ pagination: { paginationModel } }}
-            pageSizeOptions={[5, 10]}
+            pageSizeOptions={[5, 10, 20]}
             sx={{
               border: 1,
               boxShadow: 12,

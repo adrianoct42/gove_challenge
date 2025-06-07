@@ -11,7 +11,7 @@ import {
   Box,
 } from "@mui/material";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
-import { useDeleteUser } from "../cadastrar-usuario/useDeleteUser";
+import { useDeleteUser } from "../usuarios/useDeleteUser";
 
 type DeleteModalProps = {
   open: boolean;
@@ -31,19 +31,32 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
   console.log(userId);
 
   return (
-    <Dialog open={open} onClose={onSet}>
+    <Dialog
+      open={open}
+      onClose={onSet}
+      slotProps={{
+        paper: {
+          sx: {
+            width: "500px",
+          },
+        },
+      }}
+    >
       <DialogTitle>
         <Box display="flex" alignItems="center" gap={1}>
-          <WarningAmberIcon color="warning" />
+          <WarningAmberIcon />
           Atenção
         </Box>
       </DialogTitle>
 
-      <DialogContent>
+      <DialogContent sx={{ mt: 2 }}>
         <Typography>Você deseja excluir o usuário {name}?</Typography>
       </DialogContent>
 
-      <DialogActions sx={{ justifyContent: "flex-end", padding: 2 }}>
+      <DialogActions
+        className="space-x-2"
+        sx={{ justifyContent: "flex-end", padding: 2 }}
+      >
         <Button variant="outlined" onClick={onSet}>
           Cancelar
         </Button>

@@ -6,6 +6,7 @@ import {
   FormControlLabel,
   FormGroup,
   Button,
+  MenuItem,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -33,23 +34,41 @@ const schema = yup.object({
   permissionTwo: yup.boolean(),
 });
 
+const typesOfUser = [
+  {
+    value: "tipo_1",
+    label: "Usuário do Tipo 1",
+  },
+  {
+    value: "tipo_2",
+    label: "Usuário do Tipo 2",
+  },
+  {
+    value: "tipo_3",
+    label: "Usuário do Tipo 3",
+  },
+];
+
 export default function Page() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       name: "",
       email: "",
       phone: "",
-      userType: "",
+      userType: "tipo_1",
       secretary: "",
       permissionOne: false,
       permissionTwo: false,
     },
   });
+
+  const userTypeValue = watch("userType");
 
   const { userMutationCreate } = useCreateUser();
   const router = useRouter();
@@ -92,10 +111,18 @@ export default function Page() {
           <TextField
             label="Tipo de usuário"
             variant="standard"
-            {...register("userType")}
             error={!!errors.userType}
             helperText={errors.userType?.message}
-          />
+            select
+            value={userTypeValue}
+            {...register("userType")}
+          >
+            {typesOfUser.map((type) => (
+              <MenuItem key={type.value} value={type.value}>
+                {type.label}
+              </MenuItem>
+            ))}
+          </TextField>
           <TextField
             label="Órgão/Secretaria"
             variant="standard"
