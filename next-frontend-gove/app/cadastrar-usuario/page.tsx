@@ -23,20 +23,17 @@ type User = {
   permissionTwo?: boolean;
 };
 
-export default function Page() {
-  const schema = yup.object({
-    name: yup.string().required("Nome é obrigatório"),
-    email: yup
-      .string()
-      .email("E-mail inválido")
-      .required("E-mail é obrigatório"),
-    phone: yup.string().required("Telefone é obrigatório"),
-    userType: yup.string().required("Tipo de usuário é obrigatório"),
-    secretary: yup.string().required("Órgão/Secretaria é obrigatório"),
-    permissionOne: yup.boolean(),
-    permissionTwo: yup.boolean(),
-  });
+const schema = yup.object({
+  name: yup.string().required("Nome é obrigatório"),
+  email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
+  phone: yup.string().required("Telefone é obrigatório"),
+  userType: yup.string().required("Tipo de usuário é obrigatório"),
+  secretary: yup.string().required("Órgão/Secretaria é obrigatório"),
+  permissionOne: yup.boolean(),
+  permissionTwo: yup.boolean(),
+});
 
+export default function Page() {
   const {
     register,
     handleSubmit,

@@ -1,5 +1,8 @@
 "use client";
 
+import React, { useState } from "react";
+import Spinner from "../components/Spinner";
+import DeleteModal from "../components/DeleteModal";
 import { Add, Delete, Edit, MoreVert } from "@mui/icons-material";
 import {
   Button,
@@ -12,31 +15,38 @@ import {
 } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
-import Spinner from "../components/Spinner";
 import { getUsers } from "../services/api";
-import React from "react";
 import { useRouter } from "next/navigation";
 import { formatDate } from "../utils/dateUtil";
 
 export default function Page() {
-  const [menuAnchor, setMenuAnchor] = React.useState<null | HTMLElement>(null);
-  const [selectedId, setSelectedId] = React.useState<string | number | null>(
-    null
-  );
+  /*
+  Referências:
+  isModalOpen: Controla o Modal de delete de usuário.
+  selectedName + selectedId: Importantes para deleção e edição de usuários.
+  menuAnchor: Posicionamento do Material UI do elemento de Menu.
+  */
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedName, setSelectedName] = useState<string | null>(null);
+  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+  const [selectedId, setSelectedId] = useState<string | number | null>(null);
 
   const router = useRouter();
 
   const handleMenuOpen = (
     event: React.MouseEvent<HTMLElement>,
+    name: string,
     id: string | number
   ) => {
     setMenuAnchor(event.currentTarget);
+    setSelectedName(name);
     setSelectedId(id);
   };
 
   const handleMenuClose = () => {
     setMenuAnchor(null);
     setSelectedId(null);
+    setSelectedName(null);
   };
 
   const handlePageNavigation = (url: string): void => {
@@ -70,7 +80,9 @@ export default function Page() {
       flex: 1,
       renderCell: (params) => (
         <>
-          <IconButton onClick={(e) => handleMenuOpen(e, params.row.id)}>
+          <IconButton
+            onClick={(e) => handleMenuOpen(e, params.row.name, params.row.id)}
+          >
             <MoreVert />
           </IconButton>
           <Menu
@@ -93,10 +105,10 @@ export default function Page() {
             </MenuItem>
             <MenuItem
               onClick={() => {
-                // Abre modal de deletar
+                setIsModalOpen(true);
               }}
             >
-              <ListItemIcon onClick={() => null}>
+              <ListItemIcon>
                 <Delete fontSize="small" />
               </ListItemIcon>
               <ListItemText>Deletar</ListItemText>
@@ -145,6 +157,17 @@ export default function Page() {
           />
         </Paper>
       )}
+      {isModalOpen ? (
+        <DeleteModal
+          open={isModalOpen}
+          onSet={() => {
+            setIsModalOpen(false);
+            handleMenuClose();
+          }}
+          userId={selectedId as string}
+          name={selectedName as string}
+        />
+      ) : null}
     </>
   );
 }

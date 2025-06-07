@@ -50,6 +50,6 @@ export async function editUser(user: User) {
   }
 }
 
-export async function deleteUser(user: User) {
-  return axios.delete(`/deletar-usuario/${user.id}`);
+export async function deleteUser(userId: string) {
+  return axios.delete(`/deletar-usuario/${userId}`);
 }
