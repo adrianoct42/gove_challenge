@@ -44,40 +44,33 @@ Este projeto é um **CRUD completo (Create, Read, Update, Delete)** utilizando:
 
 ### 1️⃣ Clonar o repositório
 
-\`\`\`bash
 git clone https://github.com/adrianoct42/gove_challenge.git
-\`\`\`
 
 ### 2️⃣ Rodar o Backend (Laravel)
 
 Entre na pasta do Laravel e faça o seguinte:
 (Lembre-se também de configurar o arquivo .env conforme os detalhes do seu banco!)
 
-\`\`\`bash
 composer install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate
 php artisan serve
-\`\`\`
 
 ### 3️⃣ Rodar o Frontend (Next.js)
 
 Entre na pasta do Next.js e faça o seguinte:
 
-\`\`\`bash
 npm install
 npm run dev
-\`\`\`
 
 ### 4️⃣ Configuração de CORS (Backend)
 
 Certifique-se de configurar o CORS corretamente no Laravel para permitir chamadas do frontend:
 
-\`\`\`php
 // config/cors.php
-'allowed_origins' => ['http://localhost:3000'],
-\`\`\`
+'allowed_origins' => ['*'],
+'allowed_methods' => ['*'],
 
 ---
 
