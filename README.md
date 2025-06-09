@@ -1,9 +1,9 @@
 # 🚀 CRUD com Next.js + Laravel
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Next.js-13%2B-blue.svg" />
-  <img src="https://img.shields.io/badge/Laravel-10-red.svg" />
-  <img src="https://img.shields.io/badge/TypeScript-4.x-blue.svg" />
+  <img src="https://img.shields.io/badge/Next.js-15-blue.svg" />
+  <img src="https://img.shields.io/badge/Laravel-12-red.svg" />
+  <img src="https://img.shields.io/badge/TypeScript-5-blue.svg" />
   <img src="https://img.shields.io/badge/MIT-License-green.svg" />
 </p>
 
@@ -42,35 +42,51 @@ Este projeto é um **CRUD completo (Create, Read, Update, Delete)** utilizando:
 
 ## 🚀 Como Rodar o Projeto
 
+
 ### 1️⃣ Clonar o repositório
 
 git clone https://github.com/adrianoct42/gove_challenge.git
 
+
 ### 2️⃣ Rodar o Backend (Laravel)
 
 Entre na pasta do Laravel e faça o seguinte:
+
 (Lembre-se também de configurar o arquivo .env conforme os detalhes do seu banco!)
 
+
 composer install
+
 cp .env.example .env
+
 php artisan key:generate
+
 php artisan migrate
+
 php artisan serve
+
 
 ### 3️⃣ Rodar o Frontend (Next.js)
 
 Entre na pasta do Next.js e faça o seguinte:
 
+
 npm install
+
 npm run dev
+
 
 ### 4️⃣ Configuração de CORS (Backend)
 
 Certifique-se de configurar o CORS corretamente no Laravel para permitir chamadas do frontend:
 
+
 // config/cors.php
+
 'allowed_origins' => ['*'],
+
 'allowed_methods' => ['*'],
+
 
 ---
 
