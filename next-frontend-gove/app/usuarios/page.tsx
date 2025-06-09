@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Spinner from "../components/Spinner";
-import DeleteModal from "../components/DeleteModal";
+import Spinner from "../_components/Spinner";
+import DeleteModal from "../_components/DeleteModal";
 import { Add, Delete, Edit, MoreVert } from "@mui/icons-material";
 import {
   Button,
@@ -15,9 +15,9 @@ import {
 } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "../services/api";
+import { getUsers } from "../_services/api";
 import { useRouter } from "next/navigation";
-import { formatDate } from "../utils/dateUtil";
+import { formatDate } from "../_utils/dateUtil";
 
 export default function Page() {
   /*

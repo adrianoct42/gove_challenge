@@ -1,4 +1,4 @@
-import { editUser } from "@/app/services/api";
+import { editUser } from "@/app/_services/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 

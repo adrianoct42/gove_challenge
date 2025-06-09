@@ -13,7 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useParams, useRouter } from "next/navigation";
 import * as yup from "yup";
 import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "@/app/services/api";
+import { getUsers } from "@/app/_services/api";
 import { useEditUser } from "./useEditUser";
 import { useEffect } from "react";
 
